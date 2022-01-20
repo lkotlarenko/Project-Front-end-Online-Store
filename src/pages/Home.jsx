@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import CartBtn from '../components/CartBtn';
 
 export class Home extends Component {
   render() {
     return (
-      <div>
-        <p data-testid="home-initial-message">
+      <main>
+        <span data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-      </div>
+        </span>
+        <CartBtn />
+      </main>
     );
   }
 }
