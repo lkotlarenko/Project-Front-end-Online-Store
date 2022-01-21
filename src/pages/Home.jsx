@@ -11,12 +11,19 @@ export class Home extends Component {
       query: '',
       products: [],
       categActual: '',
+      cartItems: [],
     };
   }
 
   componentDidMount() {
     this.setCategories();
     this.filterProducts();
+  }
+
+  addCart = ({ target: { parentElement: { id } } }) => {
+    this.setState((prevState) => ({
+      cartItems: [...prevState.cartItems, id],
+    }));
   }
 
   setCategories = async () => {
@@ -86,6 +93,7 @@ export class Home extends Component {
           <Card
             key={ card.id }
             product={ card }
+            addToCart={ this.addCart }
           />
         )) }
       </main>
