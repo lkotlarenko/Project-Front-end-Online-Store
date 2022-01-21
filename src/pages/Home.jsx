@@ -20,9 +20,9 @@ export class Home extends Component {
     this.filterProducts();
   }
 
-  addCart = ({ target: { parentElement: { id } } }) => {
+  addCart = (product) => {
     this.setState((prevState) => ({
-      cartItems: [...prevState.cartItems, id],
+      cartItems: [...prevState.cartItems, product],
     }));
   }
 
