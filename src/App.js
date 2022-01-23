@@ -5,13 +5,35 @@ import { Home } from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 
 export class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      cartItems: [],
+    };
+  }
+
+  addCart = (product) => {
+    this.setState((prevState) => ({
+      cartItems: [...prevState.cartItems, product],
+    }));
+  }
+
   render() {
+    const { cartItems } = this.state;
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/item/:id" component={ ProductDetail } />
-          <Route exact path="/carrinho" component={ Cart } />
-          <Route exact path="/" component={ Home } />
+          <Route
+            exact
+            path="/carrinho"
+            render={ () => <Cart shoppingCart={ cartItems } /> }
+          />
+          <Route
+            exact
+            path="/"
+            render={ () => <Home callback={ this.addCart } /> }
+          />
         </Switch>
       </BrowserRouter>
     );
