@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class ProductDetail extends Component {
@@ -26,14 +26,24 @@ class ProductDetail extends Component {
   };
 
   render() {
-    const { product: { title, thumbnail, price, warranty } } = this.state;
+    const { product } = this.state;
+    const { shoppingCart } = this.props;
+    const { title, thumbnail, price, warranty } = product;
     return (
       <div>
         <Link to="/">Home</Link>
+        <Link data-testid="shopping-cart-button" to="/carrinho">Carrinho</Link>
         <h3 data-testid="product-detail-name">{title}</h3>
         <img src={ thumbnail } alt={ title } width="150px" />
         <h4>{price}</h4>
         <h4>{warranty}</h4>
+        <button
+          onClick={ () => shoppingCart(product) }
+          type="button"
+          data-testid="product-detail-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
@@ -41,6 +51,8 @@ class ProductDetail extends Component {
 
 ProductDetail.propTypes = {
   match: PropTypes.objectOf(PropTypes.object),
+  shoppingCart: PropTypes.func,
 }.isRequired;
 
-export default ProductDetail;
+// https://stackoverflow.com/questions/54114416/how-to-access-this-props-match-params-along-with-other-props
+export default withRouter(ProductDetail);

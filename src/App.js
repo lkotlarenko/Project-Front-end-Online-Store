@@ -23,7 +23,11 @@ export class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/item/:id" component={ ProductDetail } />
+          <Route
+            exact
+            path="/item/:id"
+            render={ () => <ProductDetail shoppingCart={ this.addCart } /> }
+          />
           <Route
             exact
             path="/carrinho"

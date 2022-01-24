@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Cart extends Component {
   constructor() {
@@ -29,6 +30,7 @@ class Cart extends Component {
     );
     return (
       <section>
+        <Link to="/">Home</Link>
         {shoppingCart.length === 0 ? emptyCart : shoppingCart.map((item) => {
           const { price, title, thumbnail, id } = item;
           return (
