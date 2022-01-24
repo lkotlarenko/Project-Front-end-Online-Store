@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CartBtn from '../components/CartBtn';
 import * as api from '../services/api';
 import Card from '../components/Card';
@@ -17,6 +18,11 @@ export class Home extends Component {
   componentDidMount() {
     this.setCategories();
     this.filterProducts();
+  }
+
+  addToCart = (product) => {
+    const { callback } = this.props;
+    callback(product);
   }
 
   setCategories = async () => {
@@ -86,11 +92,16 @@ export class Home extends Component {
           <Card
             key={ card.id }
             product={ card }
+            addToCart={ this.addToCart }
           />
         )) }
       </main>
     );
   }
 }
+
+Home.propTypes = {
+  callback: PropTypes.func,
+}.isRequired;
 
 export default Home;
