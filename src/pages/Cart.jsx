@@ -21,6 +21,17 @@ class Cart extends Component {
     });
   }
 
+  updateContent = ({ target }) => {
+    const { name } = target;
+    const tagP = target.parentElement.parentElement.children[3];
+    const valueP = Number(tagP.innerText);
+    if (name === 'sum') {
+      tagP.innerText = valueP + 1;
+    } else {
+      tagP.innerText = valueP - 1;
+    }
+  }
+
   render() {
     const { shoppingCart } = this.state;
     const emptyCart = (
@@ -39,6 +50,24 @@ class Cart extends Component {
               <img src={ thumbnail } alt={ title } width="150px" />
               <h4>{ price }</h4>
               <p data-testid="shopping-cart-product-quantity">1</p>
+              <section id={ id }>
+                <button
+                  name="sum"
+                  data-testid="product-increase-quantity"
+                  type="button"
+                  onClick={ this.updateContent }
+                >
+                  +
+                </button>
+                <button
+                  name="sub"
+                  data-testid="product-decrease-quantity"
+                  type="button"
+                  onClick={ this.updateContent }
+                >
+                  -
+                </button>
+              </section>
             </div>
           );
         })}
