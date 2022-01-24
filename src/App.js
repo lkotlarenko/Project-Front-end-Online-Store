@@ -13,9 +13,19 @@ export class App extends Component {
   }
 
   addCart = (product) => {
-    this.setState((prevState) => ({
-      cartItems: [...prevState.cartItems, product],
-    }));
+    const { cartItems } = this.state;
+    product.quantity = 1;
+    const validatQantit = cartItems.find((item) => item.id === product.id);
+    if (validatQantit) {
+      validatQantit.quantity += 1;
+      // this.setState((prevState) => ({
+      //   cartItems: [...prevState.cartItems, product],
+      // }));
+    } else {
+      this.setState((prevState) => ({
+        cartItems: [...prevState.cartItems, product],
+      }));
+    }
   }
 
   render() {
