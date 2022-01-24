@@ -12,12 +12,23 @@ export class App extends Component {
     };
   }
 
+  updateContent = (item, operation) => {
+    const { cartItems } = this.state;
+    const validatQantit = cartItems.find((product) => product.id === item.id);
+    if (operation === '+') {
+      validatQantit.order_backend += 1;
+      console.log('cai aq');
+    } else {
+      validatQantit.order_backend -= 1;
+    }
+  }
+
   addCart = (product) => {
     const { cartItems } = this.state;
-    product.quantity = 1;
+    // product.order_backend += 1;
     const validatQantit = cartItems.find((item) => item.id === product.id);
     if (validatQantit) {
-      validatQantit.quantity += 1;
+      validatQantit.order_backend += 1;
       // this.setState((prevState) => ({
       //   cartItems: [...prevState.cartItems, product],
       // }));
@@ -41,7 +52,11 @@ export class App extends Component {
           <Route
             exact
             path="/carrinho"
-            render={ () => <Cart shoppingCart={ cartItems } /> }
+            render={ () => (
+              <Cart
+                updateContent={ this.updateContent }
+                shoppingCart={ cartItems }
+              />) }
           />
           <Route
             exact
