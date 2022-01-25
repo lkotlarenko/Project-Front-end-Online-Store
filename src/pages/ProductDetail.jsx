@@ -27,7 +27,7 @@ class ProductDetail extends Component {
 
   render() {
     const { product } = this.state;
-    const { shoppingCart } = this.props;
+    const { cartHandler } = this.props;
     const { title, thumbnail, price, warranty } = product;
     return (
       <div>
@@ -38,7 +38,7 @@ class ProductDetail extends Component {
         <h4>{price}</h4>
         <h4>{warranty}</h4>
         <button
-          onClick={ () => shoppingCart(product) }
+          onClick={ () => cartHandler(product) }
           type="button"
           data-testid="product-detail-add-to-cart"
         >
@@ -51,7 +51,7 @@ class ProductDetail extends Component {
 
 ProductDetail.propTypes = {
   match: PropTypes.objectOf(PropTypes.object),
-  shoppingCart: PropTypes.func,
+  cartHandler: PropTypes.func,
 }.isRequired;
 
 // https://stackoverflow.com/questions/54114416/how-to-access-this-props-match-params-along-with-other-props

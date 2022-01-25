@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as localHandler from '../services/localHandler';
 
 class CartItem extends Component {
   constructor() {
     super();
+    // thanks to https://github.com/PetzingerLucas for all the help & the idea of separating the components to save the quantity :D
     this.state = {
       quantity: 1,
     };
@@ -23,8 +25,14 @@ class CartItem extends Component {
     }
   }
 
+  removeFromCart = () => {
+    const { refresh, data: { id } } = this.props;
+    localHandler.removeProductById(id);
+    refresh();
+  }
+
   render() {
-    const { item: { price, title, thumbnail, id } } = this.props;
+    const { data: { price, title, thumbnail, id } } = this.props;
     const { quantity } = this.state;
     return (
       <div key={ id }>
@@ -48,6 +56,12 @@ class CartItem extends Component {
             onClick={ this.updateQuantity }
           >
             -
+          </button>
+          <button
+            type="button"
+            onClick={ this.removeFromCart }
+          >
+            Remover do carrinho
           </button>
         </section>
       </div>

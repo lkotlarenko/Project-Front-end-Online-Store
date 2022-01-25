@@ -17,7 +17,7 @@ export class App extends Component {
           <Route
             exact
             path="/item/:id"
-            render={ () => <ProductDetail /> }
+            render={ () => <ProductDetail cartHandler={ this.addCart } /> }
           />
           <Route
             exact
