@@ -3,12 +3,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom/';
 import Cart from './pages/Cart';
 import { Home } from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
-import saveProduct from './services/localHandler';
+import * as localHandler from './services/localHandler';
 
 export class App extends Component {
-
   addCart = (product) => {
-    saveProduct(product);
+    localHandler.saveProduct(product);
   }
 
   render() {
@@ -18,12 +17,12 @@ export class App extends Component {
           <Route
             exact
             path="/item/:id"
-            component={ <ProductDetail /> }
+            render={ () => <ProductDetail /> }
           />
           <Route
             exact
             path="/carrinho"
-            component={ <Cart /> }
+            render={ () => <Cart /> }
           />
           <Route
             exact

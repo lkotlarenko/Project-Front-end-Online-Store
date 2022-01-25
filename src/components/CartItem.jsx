@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class CartItem extends Component {
   constructor() {
@@ -8,8 +9,18 @@ class CartItem extends Component {
     };
   }
 
-  updateQuantity = () => {
-
+  updateQuantity = ({ target }) => {
+    const { quantity } = this.state;
+    const operator = target.name;
+    if (operator === 'sum') {
+      this.setState({ quantity: quantity + 1 });
+    } else if (operator === 'sub') {
+      if (quantity > 0) {
+        this.setState({ quantity: quantity - 1 });
+      } else {
+        this.setState({ quantity: 0 });
+      }
+    }
   }
 
   render() {

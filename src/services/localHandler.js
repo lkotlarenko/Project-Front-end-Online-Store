@@ -1,7 +1,7 @@
 export const saveProduct = (product) => {
   const currentLocal = JSON.parse(localStorage.getItem('cartItems'));
   if (currentLocal) {
-    localStorage.setItem('cartItems', JSON.stringify([...cartItems, product]));
+    localStorage.setItem('cartItems', JSON.stringify([...currentLocal, product]));
   } else {
     localStorage.setItem('cartItems', JSON.stringify([product]));
   }
