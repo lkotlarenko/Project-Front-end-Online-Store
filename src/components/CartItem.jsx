@@ -4,7 +4,7 @@ class CartItem extends Component {
   constructor() {
     super();
     this.state = {
-      quantity: 0,
+      quantity: 1,
     };
   }
 
@@ -45,7 +45,7 @@ class CartItem extends Component {
 }
 
 CartItem.propTypes = {
-  
+  data: PropTypes.object,
 }.isRequired;
 
 export default CartItem;

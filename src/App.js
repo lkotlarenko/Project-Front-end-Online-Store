@@ -6,19 +6,12 @@ import ProductDetail from './pages/ProductDetail';
 import saveProduct from './services/localHandler';
 
 export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cartItems: [],
-    };
-  }
 
   addCart = (product) => {
     saveProduct(product);
   }
 
   render() {
-    const { cartItems } = this.state;
     return (
       <BrowserRouter>
         <Switch>
