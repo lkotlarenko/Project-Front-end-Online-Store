@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
 
-export class CartItem extends Component {
-  constructor(props) {
+class CartItem extends Component {
+  constructor() {
     super();
-    const initialQuantity = props.item.order_backend - 1;
     this.state = {
-      quantity: initialQuantity,
+      quantity: 0,
     };
   }
 
-  callUpdate(item, operation) {
-    const { updateContent } = this.props;
-    const { quantity } = this.state;
-    updateContent(item, operation, quantity);
-    if (operation === '+') {
-      this.setState((prevState) => ({
-        quantity: prevState.quantity += 1,
-      }));
-    }
+  updateQuantity = () => {
+
   }
 
   render() {
-    const { item: { price, title, thumbnail, id }, updateContent } = this.props;
+    const { item: { price, title, thumbnail, id } } = this.props;
     const { quantity } = this.state;
     return (
       <div key={ id }>
@@ -34,7 +26,7 @@ export class CartItem extends Component {
             name="sum"
             data-testid="product-increase-quantity"
             type="button"
-            onClick={ () => callUpdate(item, '+') }
+            onClick={ this.updateQuantity }
           >
             +
           </button>
@@ -42,7 +34,7 @@ export class CartItem extends Component {
             name="sub"
             data-testid="product-decrease-quantity"
             type="button"
-            onClick={ () => callUpdate(item, '-') }
+            onClick={ this.updateQuantity }
           >
             -
           </button>
@@ -51,5 +43,9 @@ export class CartItem extends Component {
     );
   }
 }
+
+CartItem.propTypes = {
+  
+}.isRequired;
 
 export default CartItem;

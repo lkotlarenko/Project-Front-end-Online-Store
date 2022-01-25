@@ -4,28 +4,6 @@ import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 
 class Cart extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     shoppingCart: [],
-  //   };
-  // }
-
-  // componentDidMount() {
-  //   this.getCart();
-  // }
-
-  // componentDidUpdate() {
-  //   this.getCart();
-  // }
-
-  // getCart = () => {
-  //   const { shoppingCart } = this.props;
-  //   this.setState({
-  //     shoppingCart,
-  //   });
-  // }
-
   render() {
     const { shoppingCart } = this.props;
     const emptyCart = (
@@ -46,9 +24,5 @@ class Cart extends Component {
     );
   }
 }
-
-Cart.propTypes = {
-  shoppingCart: PropTypes.array,
-}.isRequired;
 
 export default Cart;

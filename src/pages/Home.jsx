@@ -17,12 +17,12 @@ export class Home extends Component {
 
   componentDidMount() {
     this.setCategories();
-    this.filterProducts();
+    this.initialProducts();
   }
 
   addToCart = (product) => {
-    const { callback } = this.props;
-    callback(product);
+    const { cartHandler } = this.props;
+    cartHandler(product);
   }
 
   setCategories = async () => {
@@ -35,6 +35,14 @@ export class Home extends Component {
   setQuery = (target) => {
     this.setState({
       query: target.value,
+    });
+  }
+
+  // get & set initial products
+  initialProducts = async () => {
+    const apiResult = await api.getProductsFromCategoryAndQuery();
+    this.setState({
+      products: apiResult.results,
     });
   }
 
@@ -101,7 +109,7 @@ export class Home extends Component {
 }
 
 Home.propTypes = {
-  callback: PropTypes.func,
+  cartHandler: PropTypes.func,
 }.isRequired;
 
 export default Home;
