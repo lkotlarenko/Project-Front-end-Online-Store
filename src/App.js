@@ -3,40 +3,31 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom/';
 import Cart from './pages/Cart';
 import { Home } from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
+import * as localHandler from './services/localHandler';
 
 export class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cartItems: [],
-    };
-  }
-
   addCart = (product) => {
-    this.setState((prevState) => ({
-      cartItems: [...prevState.cartItems, product],
-    }));
+    localHandler.saveProduct(product);
   }
 
   render() {
-    const { cartItems } = this.state;
     return (
       <BrowserRouter>
         <Switch>
           <Route
             exact
             path="/item/:id"
-            render={ () => <ProductDetail shoppingCart={ this.addCart } /> }
+            render={ () => <ProductDetail cartHandler={ this.addCart } /> }
           />
           <Route
             exact
             path="/carrinho"
-            render={ () => <Cart shoppingCart={ cartItems } /> }
+            render={ () => <Cart /> }
           />
           <Route
             exact
             path="/"
-            render={ () => <Home callback={ this.addCart } /> }
+            render={ () => <Home cartHandler={ this.addCart } /> }
           />
         </Switch>
       </BrowserRouter>
