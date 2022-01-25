@@ -15,23 +15,20 @@ export class App extends Component {
   updateContent = (item, operation) => {
     const { cartItems } = this.state;
     const validatQantit = cartItems.find((product) => product.id === item.id);
-    if (operation === '+') {
-      validatQantit.order_backend += 1;
-      console.log('cai aq');
-    } else {
-      validatQantit.order_backend -= 1;
+    if (validatQantit) {
+      if (operation === '+') {
+        validatQantit.order_backend += 1;
+      } else {
+        validatQantit.order_backend -= 1;
+      }
     }
   }
 
   addCart = (product) => {
     const { cartItems } = this.state;
-    // product.order_backend += 1;
     const validatQantit = cartItems.find((item) => item.id === product.id);
     if (validatQantit) {
       validatQantit.order_backend += 1;
-      // this.setState((prevState) => ({
-      //   cartItems: [...prevState.cartItems, product],
-      // }));
     } else {
       this.setState((prevState) => ({
         cartItems: [...prevState.cartItems, product],
