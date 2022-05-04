@@ -1,6 +1,6 @@
-### Test it [here]()
+### Test it [here](https://front-end-online-store-lkotlarenko.vercel.app/)
 
-## My fist dev project made in group using agile methods 🚀
+## My first dev team project using agile methods 🚀
 ---
 # Skills
 
