@@ -36,6 +36,7 @@ class CartItem extends Component {
     const { quantity } = this.state;
     return (
       <div key={ id }>
+        <hr />
         <h3 data-testid="shopping-cart-product-name">{title}</h3>
         <img src={ thumbnail } alt={ title } width="150px" />
         <h4>{ price }</h4>
